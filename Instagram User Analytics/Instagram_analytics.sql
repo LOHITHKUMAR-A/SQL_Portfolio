@@ -1,6 +1,3 @@
-
-
-
 --1) Find the 5 oldest users of the Instagram from the database provided
 
 SELECT
