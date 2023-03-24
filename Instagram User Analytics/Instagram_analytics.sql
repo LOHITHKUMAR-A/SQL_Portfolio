@@ -1,7 +1,7 @@
 
 
-/**
---Find the 5 oldest users of the Instagram from the database provided
+
+--1) Find the 5 oldest users of the Instagram from the database provided
 
 SELECT
 username,
@@ -12,7 +12,7 @@ ORDER BY created_at
 LIMIT 5
 
 
---Find the users who have never posted a single photo on Instagram
+--2) Find the users who have never posted a single photo on Instagram
 
 SELECT
 u.username 
@@ -24,7 +24,7 @@ WHERE p.user_id is null
 ORDER BY u.username;
 
 
---Identify the winner of the contest and provide their details to the team
+--3) Identify the winner of the contest and provide their details to the team
 
 with base as(
 SELECT
@@ -42,7 +42,7 @@ LIMIT 1)
 select username from base;
 
 
---Identify and suggest the top 5 most commonly used hashtags on the platform
+--4) Identify and suggest the top 5 most commonly used hashtags on the platform
 
 
 SELECT
@@ -55,7 +55,7 @@ GROUP BY t.tag_name
 ORDER BY Ctags DESC
 limit 5
 
---What day of the week do most users register on? Provide insights on when to schedule an ad campaign
+--5) What day of the week do most users register on? Provide insights on when to schedule an ad campaign
 Answer:- HERE, days count start from Monday-0, Tuesday-1,……,Sunday-6 .Hence,Thursday and Sunday are good for ad campaign.
 
 SELECT
@@ -68,11 +68,11 @@ order by num_users DESC
 
 
 --User Engagement: 
-Are users still as active and post on Instagram or they are making fewer posts.
+6) Are users still as active and post on Instagram or they are making fewer posts.
 Your Task: Provide how many times does average user posts on Instagram. 
 Also, provide the total number of photos on Instagram/total number of users.
 
---Posted photos
+--6a) Posted photos
 
 SELECT sum(photosid) as t_photos,
 count(usersid) as t_users,
@@ -88,7 +88,7 @@ ON u.id=p.user_id
 WHERE photosid > 0
 
 
---No photos posted
+--6b) No photos posted
 
 SELECT sum(photosid) as t_photos,
 count(usersid) as t_users,
@@ -103,9 +103,8 @@ ON u.id=p.user_id
  GROUP BY u.id) base
  
  
---Provide data on users (bots) who have liked every single photo on the site (since any normal user would not be able to do this)
+--7) Provide data on users (bots) who have liked every single photo on the site (since any normal user would not be able to do this)
 
- 
  WITH pcount AS 
  (SELECT
 user_id, COUNT(photo_id) AS n_like
@@ -119,5 +118,4 @@ n_like DESC
 FROM Pcount 
 WHERE n_like=(SELECT COUNT(*) FROM ig_clone.photos)
 
-**/
  
